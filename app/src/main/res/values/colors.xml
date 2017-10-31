@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#ffc107</color>
+    <color name="card_background_color">#424242</color>
+    <color name="card_movie_title_color">#deffffff</color>
+    <color name="card_grade_title_color">#8affffff</color>
+    <color name="background_color">#303030</color>
+    <color name="low_alpha_black">#b0000000</color>
+</resources>
