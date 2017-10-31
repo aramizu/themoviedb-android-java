@@ -1,8 +1,12 @@
 package br.com.aramizu.themoviedb.presentation.ui.home;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.aramizu.themoviedb.data.DataManager;
+import br.com.aramizu.themoviedb.data.model.Movie;
 import br.com.aramizu.themoviedb.data.model.NowPlayingResponseModel;
 import br.com.aramizu.themoviedb.presentation.ui.base.BasePresenter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,6 +37,8 @@ public class HomePresenter<V extends HomeMvpView> extends BasePresenter<V>
                                 V view = getMvpView();
                                 view.hideLoading();
 
+                                filterMoviesByAverageVote(nowPlayingMovies);
+
                                 getMvpView().showNowPlayingMovies(nowPlayingMovies);
                             }
                         }, new Consumer<Throwable>() {
@@ -46,5 +52,17 @@ public class HomePresenter<V extends HomeMvpView> extends BasePresenter<V>
                         }
                 )
         );
+    }
+
+    private void filterMoviesByAverageVote(NowPlayingResponseModel nowPlayingMovies) {
+        ArrayList<Movie> filteredMovies = new ArrayList<>(nowPlayingMovies.getResults());
+
+        for (Movie movie : nowPlayingMovies.getResults()) {
+            if (movie.getVote_average() < 5.0) {
+                filteredMovies.remove(movie);
+            }
+        }
+
+        nowPlayingMovies.setResults(filteredMovies);
     }
 }

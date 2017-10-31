@@ -17,6 +17,10 @@ public class NowPlayingResponseModel {
         return results;
     }
 
+    public void setResults(List<Movie> results) {
+        this.results = results;
+    }
+
     public int getTotal_pages() {
         return total_pages;
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TheMovieDB</string>
     <string name="home_title">Now Playing</string>
+    <string name="details_title">Detalhes do filme</string>
     <string name="dialog_title_error">Attention</string>
     <string name="dialog_title_generic_message">An error occurs</string>
 </resources>

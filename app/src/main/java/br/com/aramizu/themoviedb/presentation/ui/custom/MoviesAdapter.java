@@ -1,6 +1,8 @@
 package br.com.aramizu.themoviedb.presentation.ui.custom;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import java.util.List;
 import br.com.aramizu.themoviedb.R;
 import br.com.aramizu.themoviedb.data.model.Movie;
 import br.com.aramizu.themoviedb.data.network.APIConstants;
+import br.com.aramizu.themoviedb.presentation.ui.details.MovieDetailsActivity;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -73,7 +76,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     .bitmapTransform(new RoundedCornersTransformation(context, 4, 0, RoundedCornersTransformation.CornerType.ALL))
                     .into(movieViewHolder.wallpaper);
         }
-        /*
+
         movieViewHolder.wallpaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,14 +87,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 context.startActivity(intent);
             }
         });
-        */
 
         movieViewHolder.title.setText(movie.getTitle());
         movieViewHolder.grade.setText(String.valueOf(String.format("%.1f", movie.getVote_average())));
-
-        if (position == movies.size() - 1) {
-            onLoadMoreListenerInterface.onLoadMore();
-        }
 
         if (currentPage < totalPages && position == movies.size() - 1) {
             currentPage++;

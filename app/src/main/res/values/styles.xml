@@ -22,6 +22,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light" />
 
+    <style name="ImageNotAvailable">
+        <item name="android:textColor">@color/card_grade_title_color</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="MovieTitleStyle">
         <item name="android:textColor">@color/card_movie_title_color</item>
         <item name="android:textSize">16sp</item>
@@ -35,6 +40,76 @@
     <style name="MovieGradeStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ToolbarText">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TitleDialogStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="BodyDialogStyle">
+        <item name="android:textColor">@color/body_dialog_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="OkDialogStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TitleDetailStyle">
+        <item name="android:textColor">@color/titles_header_movie_detail</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TitleDetailBodyStyle">
+        <item name="android:textColor">@color/titles_header_movie_detail</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BodyDetailStyle">
+        <item name="android:textColor">@color/bodies_header_movie_detail</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="LinkDetailStyle">
+        <item name="android:textColor">@color/bodies_header_movie_detail</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TitleHeaderMovieStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="BodyHeaderMovieStyle">
+        <item name="android:textColor">@color/bodies_header_movie_detail</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="NameCastStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="CharacterNameCastStyle">
+        <item name="android:textColor">@color/character_name_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DetailsCastStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="FilterButtonText">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

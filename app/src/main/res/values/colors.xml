@@ -8,4 +8,12 @@
     <color name="card_grade_title_color">#8affffff</color>
     <color name="background_color">#303030</color>
     <color name="low_alpha_black">#b0000000</color>
+    <color name="grey">#212121</color>
+    <color name="body_dialog_color">#B2ffffff</color>
+    <color name="text_shadow">#CC000000</color>
+    <color name="titles_header_movie_detail">#8Affffff</color>
+    <color name="bodies_header_movie_detail">#DEffffff</color>
+    <color name="character_name_color">#8affffff</color>
+    <color name="div_line">#1f000000</color>
+    <color name="filter_title_selected_color">#de000000</color>
 </resources>
