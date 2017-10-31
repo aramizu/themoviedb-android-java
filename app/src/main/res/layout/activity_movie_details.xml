@@ -22,14 +22,13 @@
             <include android:id="@+id/header"
                 layout="@layout/header_movie_detail"/>
 
-            <!-- Nome original -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="NOME ORIGINAL"
+                android:text="@string/details_activity_original_name"
                 style="@style/TitleDetailBodyStyle"/>
             <TextView
                 android:id="@+id/title"
@@ -40,14 +39,13 @@
                 android:paddingRight="20dp"
                 style="@style/BodyDetailStyle"/>
 
-            <!-- Lançamento -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="LANÇAMENTO"
+                android:text="@string/details_activity_release"
                 style="@style/TitleDetailBodyStyle"/>
             <TextView
                 android:id="@+id/release_date"
@@ -58,14 +56,13 @@
                 android:paddingRight="20dp"
                 style="@style/BodyDetailStyle"/>
 
-            <!-- Sinopse -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="SINOPSE"
+                android:text="@string/details_activity_synopsis"
                 style="@style/TitleDetailBodyStyle"/>
             <TextView
                 android:id="@+id/overview"

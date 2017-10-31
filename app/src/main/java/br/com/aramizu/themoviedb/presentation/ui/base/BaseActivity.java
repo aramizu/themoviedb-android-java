@@ -36,6 +36,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     private ProgressDialog progressDialog;
     private ActivityComponent mActivityComponent;
 
+    public static final int NOW_PLAYING_STYLE = 0;
+    public static final int SEARCH_STYLE = 1;
+
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
@@ -57,9 +60,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         }
     }
 
@@ -145,6 +145,21 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     @Override
     public void setToolbarTitle(String message) {
         toolbarTitle.setText(message);
+    }
+
+    @Override
+    public void setToolbarStyle(int toolbarStyle) {
+        switch (toolbarStyle) {
+            case NOW_PLAYING_STYLE:
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setHomeButtonEnabled(false);
+                break;
+            case SEARCH_STYLE:
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setHomeButtonEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+                break;
+        }
     }
 
     public Context getContext() {

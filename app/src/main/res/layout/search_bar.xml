@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/grey">
+
+    <EditText
+        android:id="@+id/edt_search"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/now_playing_title"
+        android:drawableLeft="@drawable/ic_magnify_white"
+        android:drawablePadding="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:imeOptions="actionDone"
+        android:imeActionLabel="Search"
+        android:maxLines="1"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

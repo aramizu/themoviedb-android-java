@@ -1,43 +1,40 @@
-package br.com.aramizu.themoviedb.presentation.ui.home;
-
-import java.util.ArrayList;
-import java.util.List;
+package br.com.aramizu.themoviedb.presentation.ui.home.search;
 
 import javax.inject.Inject;
 
 import br.com.aramizu.themoviedb.data.DataManager;
-import br.com.aramizu.themoviedb.data.model.Movie;
-import br.com.aramizu.themoviedb.data.model.NowPlayingResponseModel;
+import br.com.aramizu.themoviedb.data.model.MoviesResponseModel;
+import br.com.aramizu.themoviedb.data.network.APIConstants;
 import br.com.aramizu.themoviedb.presentation.ui.base.BasePresenter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomePresenter<V extends HomeMvpView> extends BasePresenter<V>
-        implements HomeMvpPresenter<V> {
+public class SearchPresenter<V extends SearchMvpView> extends BasePresenter<V>
+        implements SearchMvpPresenter<V> {
 
     @Inject
-    HomePresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+    SearchPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
         super(dataManager, compositeDisposable);
     }
 
     @Override
-    public void getNowPlayingMovies(int page) {
-        if (page == 0)
+    public void getMoviesByTitle(String title, int page) {
+        if (page == APIConstants.INITIAL_PAGINATION_INDEX)
             getMvpView().showLoading();
 
-        getCompositeDisposable().add(getDataManager().getNowPlayingMovies(page)
+        title = title.replace(" ", "+");
+
+        getCompositeDisposable().add(getDataManager().getMoviesByTitle(title, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        new Consumer<NowPlayingResponseModel>() {
+                        new Consumer<MoviesResponseModel>() {
                             @Override
-                            public void accept(NowPlayingResponseModel nowPlayingMovies) throws Exception {
+                            public void accept(MoviesResponseModel nowPlayingMovies) throws Exception {
                                 V view = getMvpView();
                                 view.hideLoading();
-
-                                filterMoviesByAverageVote(nowPlayingMovies);
 
                                 getMvpView().showNowPlayingMovies(nowPlayingMovies);
                             }
@@ -52,17 +49,5 @@ public class HomePresenter<V extends HomeMvpView> extends BasePresenter<V>
                         }
                 )
         );
-    }
-
-    private void filterMoviesByAverageVote(NowPlayingResponseModel nowPlayingMovies) {
-        ArrayList<Movie> filteredMovies = new ArrayList<>(nowPlayingMovies.getResults());
-
-        for (Movie movie : nowPlayingMovies.getResults()) {
-            if (movie.getVote_average() < 5.0) {
-                filteredMovies.remove(movie);
-            }
-        }
-
-        nowPlayingMovies.setResults(filteredMovies);
     }
 }

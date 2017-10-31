@@ -5,7 +5,7 @@ import android.content.Context;
 import javax.inject.Inject;
 
 import br.com.aramizu.themoviedb.data.model.ErrorResponse;
-import br.com.aramizu.themoviedb.data.model.NowPlayingResponseModel;
+import br.com.aramizu.themoviedb.data.model.MoviesResponseModel;
 import br.com.aramizu.themoviedb.data.network.ApiHelper;
 import br.com.aramizu.themoviedb.data.prefs.PreferencesHelper;
 import br.com.aramizu.themoviedb.presentation.internal.di.ApplicationContext;
@@ -28,8 +28,13 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Observable<NowPlayingResponseModel> getNowPlayingMovies(int page) {
+    public Observable<MoviesResponseModel> getNowPlayingMovies(int page) {
         return mApiHelper.getNowPlayingMovies(page);
+    }
+
+    @Override
+    public Observable<MoviesResponseModel> getMoviesByTitle(String query, int page) {
+        return mApiHelper.getMoviesByTitle(query, page);
     }
 
     @Override

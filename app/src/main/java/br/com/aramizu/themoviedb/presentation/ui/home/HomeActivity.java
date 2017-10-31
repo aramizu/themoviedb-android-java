@@ -1,68 +1,99 @@
 package br.com.aramizu.themoviedb.presentation.ui.home;
 
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-import javax.inject.Inject;
+import com.ncapdevi.fragnav.FragNavController;
+import com.ncapdevi.fragnav.FragNavTransactionOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.aramizu.themoviedb.R;
-import br.com.aramizu.themoviedb.data.model.NowPlayingResponseModel;
 import br.com.aramizu.themoviedb.presentation.ui.base.BaseActivity;
-import br.com.aramizu.themoviedb.presentation.ui.custom.MoviesAdapter;
-import br.com.aramizu.themoviedb.presentation.ui.custom.OnLoadMoreListenerInterface;
-import butterknife.BindView;
+import br.com.aramizu.themoviedb.presentation.ui.base.BaseFragment;
+import br.com.aramizu.themoviedb.presentation.ui.base.FragManagerListerner;
+import br.com.aramizu.themoviedb.presentation.ui.base.MvpView;
+import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingFragment;
+import br.com.aramizu.themoviedb.presentation.ui.home.search.SearchFragment;
 
-public class HomeActivity extends BaseActivity implements HomeMvpView {
+public class HomeActivity extends BaseActivity implements FragManagerListerner, MvpView {
 
-    @BindView(R.id.lst_movies)
-    RecyclerView lstMovies;
-
-    @Inject
-    HomeMvpPresenter<HomeMvpView> presenter;
-
-    private MoviesAdapter moviesAdapter;
+    private List<Fragment> fragments;
+    private FragNavController.Builder builder;
+    private FragNavController fragNavController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        getActivityComponent().inject(this);
-        presenter.onAttach(this);
+        fragments = new ArrayList<>(2);
+        builder = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container);
         setUp();
     }
 
     @Override
     protected void setUp() {
-        setToolbarTitle(R.string.home_title);
+        fragments.add(NowPlayingFragment.newInstance());
+        fragments.add(SearchFragment.newInstance());
 
-        moviesAdapter = new MoviesAdapter(this);
-
-        moviesAdapter.setOnLoadMoreInterfaceListener(new OnLoadMoreListenerInterface() {
-            @Override
-            public void onLoadMore() {
-                presenter.getNowPlayingMovies(moviesAdapter.getCurrentPage());
-            }
-        });
-
-        lstMovies.setAdapter(moviesAdapter);
-        lstMovies.setItemAnimator(new DefaultItemAnimator());
-        lstMovies.setLayoutManager(new LinearLayoutManager(this));
+        builder.rootFragments(fragments);
+        fragNavController = builder.build();
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if (moviesAdapter != null) moviesAdapter.clearMovies();
-        presenter.getNowPlayingMovies(moviesAdapter.getCurrentPage());
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (fragNavController != null) {
+            fragNavController.onSaveInstanceState(outState);
+        }
     }
 
     @Override
-    public void showNowPlayingMovies(NowPlayingResponseModel nowPlayingMovies) {
-        moviesAdapter.addMovies(nowPlayingMovies.getResults());
-        moviesAdapter.setCurrentPage(nowPlayingMovies.getPage());
-        moviesAdapter.setTotalPages(nowPlayingMovies.getTotal_pages());
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                popFragment();
+                break;
+            case R.id.search:
+                pushFragment(SearchFragment.newInstance());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        popFragment();
+    }
+
+    @Override
+    public void pushFragment(BaseFragment fragment) {
+        FragNavTransactionOptions.Builder transactionOptionsBuilder = FragNavTransactionOptions.newBuilder();
+        FragNavTransactionOptions transactionOptions = transactionOptionsBuilder.build();
+        fragNavController.pushFragment(fragment, transactionOptions);
+    }
+
+    @Override
+    public void popFragment() {
+        FragNavTransactionOptions.Builder transactionOptionsBuilder = FragNavTransactionOptions.newBuilder();
+        FragNavTransactionOptions transactionOptions = transactionOptionsBuilder.build();
+
+        if (fragNavController.getCurrentStack().size() > 1) {
+            fragNavController.popFragment(transactionOptions);
+        } else {
+            finish();
+        }
     }
 }

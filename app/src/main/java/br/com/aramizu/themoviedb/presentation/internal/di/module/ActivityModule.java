@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 
 import br.com.aramizu.themoviedb.presentation.internal.di.ActivityContext;
-import br.com.aramizu.themoviedb.presentation.internal.di.PerActivity;
-import br.com.aramizu.themoviedb.presentation.ui.home.HomeMvpPresenter;
-import br.com.aramizu.themoviedb.presentation.ui.home.HomeMvpView;
-import br.com.aramizu.themoviedb.presentation.ui.home.HomePresenter;
+import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingMvpPresenter;
+import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingMvpView;
+import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingPresenter;
+import br.com.aramizu.themoviedb.presentation.ui.home.search.SearchMvpPresenter;
+import br.com.aramizu.themoviedb.presentation.ui.home.search.SearchMvpView;
+import br.com.aramizu.themoviedb.presentation.ui.home.search.SearchPresenter;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
@@ -38,8 +40,12 @@ public class ActivityModule {
     }
 
     @Provides
-    @PerActivity
-    HomeMvpPresenter<HomeMvpView> provideLoginPresenter(HomePresenter<HomeMvpView> presenter) {
+    NowPlayingMvpPresenter<NowPlayingMvpView> provideNowPlayingPresenter(NowPlayingPresenter<NowPlayingMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    SearchMvpPresenter<SearchMvpView> provideSearchPresenter(SearchPresenter<SearchMvpView> presenter) {
         return presenter;
     }
 }

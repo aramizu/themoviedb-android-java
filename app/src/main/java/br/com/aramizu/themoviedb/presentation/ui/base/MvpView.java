@@ -17,6 +17,7 @@ public interface MvpView {
     void hideKeyboard();
     void setToolbarTitle(@StringRes int resId);
     void setToolbarTitle(String message);
+    void setToolbarStyle(int toolbarStyle);
     String getString(@StringRes int resId);
     Context getContext();
 }

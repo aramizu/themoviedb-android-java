@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_marginBottom="150dp"
-            android:text="Imagem não disponível"
+            android:text="@string/details_activity_img_not_available"
             android:visibility="gone"
             style="@style/ImageNotAvailable"/>
 
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="NOTA"
+                android:text="@string/details_activity_vote"
                 style="@style/TitleDetailStyle"/>
 
             <TextView

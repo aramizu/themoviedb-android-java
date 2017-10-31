@@ -2,7 +2,7 @@ package br.com.aramizu.themoviedb.data.model;
 
 import java.util.List;
 
-public class NowPlayingResponseModel {
+public class MoviesResponseModel {
 
     private int page;
     private List<Movie> results;

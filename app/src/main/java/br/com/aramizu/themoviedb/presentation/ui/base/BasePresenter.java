@@ -12,8 +12,6 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
-    private static final String LOG_TAG = "BasePresenter";
-
     private V mMvpView;
     private final DataManager dataManager;
     private final CompositeDisposable compositeDisposable;
@@ -30,18 +28,9 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     }
 
     @Override
-    public void onResume() {
-
-    }
-
-    @Override
     public void onDetach() {
         compositeDisposable.dispose();
         mMvpView = null;
-    }
-
-    public boolean isViewAttached() {
-        return mMvpView != null;
     }
 
     public V getMvpView() {

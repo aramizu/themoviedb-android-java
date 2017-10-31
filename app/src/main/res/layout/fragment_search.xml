@@ -6,11 +6,11 @@
     android:orientation="vertical"
     android:background="@color/low_alpha_black">
 
-    <include android:id="@+id/vToolbar"
-        layout="@layout/app_toolbar"/>
+    <include layout="@layout/search_bar" />
 
-    <FrameLayout
-        android:id="@+id/container"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lst_movies"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/low_alpha_black"/>

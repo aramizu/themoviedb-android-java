@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">TheMovieDB</string>
-    <string name="home_title">Now Playing</string>
-    <string name="details_title">Detalhes do filme</string>
+    <string name="now_playing_title">Now Playing</string>
+    <string name="details_title">Movie details</string>
+    <string name="search_title">Search movie</string>
+
     <string name="dialog_title_error">Attention</string>
     <string name="dialog_title_generic_message">An error occurs</string>
+    <string name="dialog_title_mandatory_search_filed_message">Type some keywords</string>
+    <string name="dialog_ok_label">OK</string>
+    <string name="dialog_cancel_label">CANCEL</string>
+
+    <string name="menu_search">Search</string>
+
+    <string name="details_activity_img_not_available">Image not available</string>
+    <string name="details_activity_vote">VOTE</string>
+    <string name="details_activity_original_name">ORIGINAL NAME</string>
+    <string name="details_activity_synopsis">SYNOPSIS</string>
+    <string name="details_activity_release">RELEASE</string>
 </resources>

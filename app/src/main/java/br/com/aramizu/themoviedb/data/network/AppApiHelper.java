@@ -6,7 +6,7 @@ import java.lang.annotation.Annotation;
 import javax.inject.Inject;
 
 import br.com.aramizu.themoviedb.data.model.ErrorResponse;
-import br.com.aramizu.themoviedb.data.model.NowPlayingResponseModel;
+import br.com.aramizu.themoviedb.data.model.MoviesResponseModel;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
@@ -25,8 +25,13 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Observable<NowPlayingResponseModel> getNowPlayingMovies(int page) {
+    public Observable<MoviesResponseModel> getNowPlayingMovies(int page) {
         return backendApi.nowPlayingMovies(3, APIConstants.API_KEY, page);
+    }
+
+    @Override
+    public Observable<MoviesResponseModel> getMoviesByTitle(String query, int page) {
+        return backendApi.getMoviesByTitle(3, APIConstants.API_KEY, query, page);
     }
 
     @Override

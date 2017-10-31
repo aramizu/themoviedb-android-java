@@ -13,4 +13,7 @@ public class APIConstants {
 
     /** Movies services. */
     public static final String POSTER_URL = IMAGE_SERVER_URL + POSTER_SIZE + "%1$s";
+
+    /** Initial pagination index for response movies on a list. */
+    public static final int INITIAL_PAGINATION_INDEX = 1;
 }
