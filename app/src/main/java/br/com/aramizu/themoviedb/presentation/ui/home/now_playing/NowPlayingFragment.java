@@ -99,14 +99,7 @@ public class NowPlayingFragment extends BaseFragment implements NowPlayingMvpVie
 
     @Override
     public void onPause() {
-        presenter.saveMoviesOnPreferences(moviesAdapter.getMovies());
         super.onPause();
-    }
-
-    @Override
-    public void onDestroyView() {
-        presenter.clearMoviesFromPreferences();
-        super.onDestroyView();
     }
 
     @Override
@@ -114,5 +107,6 @@ public class NowPlayingFragment extends BaseFragment implements NowPlayingMvpVie
         moviesAdapter.addMovies(nowPlayingMovies.getResults());
         moviesAdapter.setCurrentPage(nowPlayingMovies.getPage());
         moviesAdapter.setTotalPages(nowPlayingMovies.getTotal_pages());
+        presenter.saveMoviesOnPreferences(nowPlayingMovies.getResults());
     }
 }

@@ -9,7 +9,6 @@ import br.com.aramizu.themoviedb.presentation.ui.base.MvpPresenter;
 @PerActivity
 public interface NowPlayingMvpPresenter<V extends NowPlayingMvpView> extends MvpPresenter<V> {
     void getNowPlayingMovies(double averageVote, int page);
-    void clearMoviesFromPreferences();
     List<Movie> getMoviesFromPreference();
     void saveMoviesOnPreferences(List<Movie> results);
 }

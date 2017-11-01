@@ -56,18 +56,20 @@ public class NowPlayingPresenter<V extends NowPlayingMvpView> extends BasePresen
     }
 
     @Override
-    public void clearMoviesFromPreferences() {
-        getDataManager().clearPreferences();
-    }
-
-    @Override
     public List<Movie> getMoviesFromPreference() {
         return getDataManager().retrieveMovies();
     }
 
     @Override
     public void saveMoviesOnPreferences(List<Movie> results) {
-        getDataManager().saveMovies(results);
+        List<Movie> moviesOnPrefs = getMoviesFromPreference();
+
+        if (moviesOnPrefs != null) {
+            moviesOnPrefs.addAll(results);
+            getDataManager().saveMovies(moviesOnPrefs);
+        } else {
+            getDataManager().saveMovies(results);
+        }
     }
 
     /**

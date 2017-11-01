@@ -33,7 +33,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
         String json = gson.toJson(object);
         mPrefs.edit()
                 .putString(keyValue, json)
-                .commit();
+                .apply();
     }
 
     private Object getSerializableMoviesList(String keyValue) {

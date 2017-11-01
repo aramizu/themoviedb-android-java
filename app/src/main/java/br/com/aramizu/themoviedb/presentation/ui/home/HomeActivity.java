@@ -12,15 +12,19 @@ import com.ncapdevi.fragnav.FragNavTransactionOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.aramizu.themoviedb.R;
 import br.com.aramizu.themoviedb.presentation.ui.base.BaseActivity;
 import br.com.aramizu.themoviedb.presentation.ui.base.BaseFragment;
 import br.com.aramizu.themoviedb.presentation.ui.base.FragManagerListerner;
-import br.com.aramizu.themoviedb.presentation.ui.base.MvpView;
 import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingFragment;
 import br.com.aramizu.themoviedb.presentation.ui.home.search.SearchFragment;
 
-public class HomeActivity extends BaseActivity implements FragManagerListerner, MvpView {
+public class HomeActivity extends BaseActivity implements FragManagerListerner, HomeMvpView {
+
+    @Inject
+    HomeMvpPresenter<HomeMvpView> presenter;
 
     private List<Fragment> fragments;
     private FragNavController.Builder builder;
@@ -30,6 +34,9 @@ public class HomeActivity extends BaseActivity implements FragManagerListerner, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        getActivityComponent().inject(this);
+        presenter.onAttach(this);
 
         fragments = new ArrayList<>(1);
         builder = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container);
@@ -92,6 +99,7 @@ public class HomeActivity extends BaseActivity implements FragManagerListerner, 
         if (fragNavController.getCurrentStack().size() > 1) {
             fragNavController.popFragment(transactionOptions);
         } else {
+            presenter.clearMoviesFromPreferences();
             finish();
         }
     }

@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 
 import br.com.aramizu.themoviedb.presentation.internal.di.ActivityContext;
+import br.com.aramizu.themoviedb.presentation.internal.di.PerActivity;
+import br.com.aramizu.themoviedb.presentation.ui.home.HomeMvpPresenter;
+import br.com.aramizu.themoviedb.presentation.ui.home.HomeMvpView;
+import br.com.aramizu.themoviedb.presentation.ui.home.HomePresenter;
 import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingMvpPresenter;
 import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingMvpView;
 import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingPresenter;
@@ -37,6 +41,12 @@ public class ActivityModule {
     @Provides
     CompositeDisposable provideCompositeDisposable() {
         return new CompositeDisposable();
+    }
+
+    @Provides
+    @PerActivity
+    HomeMvpPresenter<HomeMvpView> provideHomePresenter(HomePresenter<HomeMvpView> presenter) {
+        return presenter;
     }
 
     @Provides
