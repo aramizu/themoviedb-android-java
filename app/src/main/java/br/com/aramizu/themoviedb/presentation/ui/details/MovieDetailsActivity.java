@@ -58,6 +58,7 @@ public class MovieDetailsActivity extends BaseActivity {
     @Override
     protected void setUp() {
         setToolbarTitle(R.string.details_title);
+        setToolbarStyle(BaseActivity.DETAILS_STYLE);
 
         titleHeader.setText(movie.getTitle());
         grade.setText(String.valueOf(String.format("%.1f", movie.getVote_average())));

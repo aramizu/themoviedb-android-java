@@ -6,6 +6,7 @@
 
     <string name="dialog_title_error">Attention</string>
     <string name="dialog_title_generic_message">An error occurs</string>
+    <string name="dialog_title_no_results_message">Results not found</string>
     <string name="dialog_title_mandatory_search_filed_message">Type some keywords</string>
     <string name="dialog_ok_label">OK</string>
     <string name="dialog_cancel_label">CANCEL</string>

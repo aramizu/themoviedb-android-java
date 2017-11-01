@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import org.w3c.dom.Text;
 
@@ -25,6 +26,7 @@ import br.com.aramizu.themoviedb.presentation.ui.custom.dialogs.GenericDialogOkC
 import br.com.aramizu.themoviedb.presentation.ui.home.HomeActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SearchFragment extends BaseFragment implements SearchMvpView {
 
@@ -86,27 +88,32 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         lstMovies.setAdapter(moviesAdapter);
         lstMovies.setItemAnimator(new DefaultItemAnimator());
         lstMovies.setLayoutManager(new LinearLayoutManager(mParentActivity));
-
-        edtSearch.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    if (verifyFields()) {
-                        moviesAdapter.clearMovies();
-                        presenter.getMoviesByTitle(edtSearch.getText().toString(), moviesAdapter.getCurrentPage());
-                    }
-                }
-                return false;
-            }
-        });
     }
 
     @Override
     public void showNowPlayingMovies(MoviesResponseModel nowPlayingMovies) {
-        moviesAdapter.addMovies(nowPlayingMovies.getResults());
-        moviesAdapter.setCurrentPage(nowPlayingMovies.getPage());
-        moviesAdapter.setTotalPages(nowPlayingMovies.getTotal_pages());
+        if (nowPlayingMovies.getResults().size() > 0) {
+            hideKeyboard();
+            moviesAdapter.addMovies(nowPlayingMovies.getResults());
+            moviesAdapter.setCurrentPage(nowPlayingMovies.getPage());
+            moviesAdapter.setTotalPages(nowPlayingMovies.getTotal_pages());
+        } else {
+            new GenericDialogOkCancel(
+                    getContext(),
+                    mParentActivity.getString(R.string.dialog_title_error),
+                    mParentActivity.getString(R.string.dialog_title_no_results_message),
+                    mParentActivity.getString(R.string.dialog_ok_label),
+                    null
+            ).showDialog();
+        }
+    }
+
+    @OnClick(R.id.search)
+    public void onSearchClick() {
+        if (verifyFields()) {
+            moviesAdapter.clearMovies();
+            presenter.getMoviesByTitle(edtSearch.getText().toString(), moviesAdapter.getCurrentPage());
+        }
     }
 
     private boolean verifyFields() {
@@ -116,7 +123,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
                     mParentActivity.getString(R.string.dialog_title_error),
                     mParentActivity.getString(R.string.dialog_title_mandatory_search_filed_message),
                     mParentActivity.getString(R.string.dialog_ok_label),
-                    mParentActivity.getString(R.string.dialog_cancel_label)
+                    null
             ).showDialog();
             return false;
         }

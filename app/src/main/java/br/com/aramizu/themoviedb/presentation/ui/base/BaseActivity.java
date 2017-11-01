@@ -38,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
     public static final int NOW_PLAYING_STYLE = 0;
     public static final int SEARCH_STYLE = 1;
+    public static final int DETAILS_STYLE = 2;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -158,6 +159,11 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setHomeButtonEnabled(true);
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+                break;
+            case DETAILS_STYLE:
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setHomeButtonEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
                 break;
         }
     }
