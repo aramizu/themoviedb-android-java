@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -75,6 +77,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
     protected void setUp() {
         setToolbarTitle(R.string.search_title);
         setToolbarStyle(BaseActivity.SEARCH_STYLE);
+
 
         moviesAdapter = new MoviesAdapter(mParentActivity);
 

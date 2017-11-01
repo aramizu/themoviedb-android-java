@@ -31,7 +31,7 @@ public class HomeActivity extends BaseActivity implements FragManagerListerner, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        fragments = new ArrayList<>(2);
+        fragments = new ArrayList<>(1);
         builder = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container);
         setUp();
     }
@@ -39,7 +39,6 @@ public class HomeActivity extends BaseActivity implements FragManagerListerner, 
     @Override
     protected void setUp() {
         fragments.add(NowPlayingFragment.newInstance());
-        fragments.add(SearchFragment.newInstance());
 
         builder.rootFragments(fragments);
         fragNavController = builder.build();
@@ -70,7 +69,7 @@ public class HomeActivity extends BaseActivity implements FragManagerListerner, 
                 pushFragment(SearchFragment.newInstance());
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @Override

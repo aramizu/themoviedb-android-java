@@ -26,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:textSize="20dp"
+                android:layout_marginLeft="8dp"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>

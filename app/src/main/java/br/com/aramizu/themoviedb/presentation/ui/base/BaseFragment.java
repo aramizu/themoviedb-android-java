@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import br.com.aramizu.themoviedb.R;
 import br.com.aramizu.themoviedb.presentation.internal.di.components.ActivityComponent;
+import br.com.aramizu.themoviedb.presentation.ui.home.now_playing.NowPlayingFragment;
+import br.com.aramizu.themoviedb.presentation.ui.home.search.SearchFragment;
 
 public abstract class BaseFragment extends Fragment implements MvpView {
 
@@ -43,6 +48,16 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     public void onDestroy() {
         onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.search);
+        if (this instanceof SearchFragment)
+            item.setVisible(false);
+        if (this instanceof NowPlayingFragment)
+            item.setVisible(true);
+        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
