@@ -15,6 +15,12 @@ First of all, credits to the creators of these beauties libraries below that it 
 
 It was developed with Android Studio 2.3.3 with `minSdkVersion 16`
 
+## Screenshots
+
+![Main Screen](https://github.com/aramizu/themoviedb-android-java/blob/master/screen-1.png?raw=true)
+![Details Screen](https://github.com/aramizu/themoviedb-android-java/blob/master/screen-2.png?raw=true)
+![Search Screen](https://github.com/aramizu/themoviedb-android-java/blob/master/screen-3.png?raw=true)
+
 ## Getting Started
 
 Clone this repository, enter the top level directory and run.
