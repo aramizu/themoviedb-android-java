@@ -2,9 +2,9 @@
 
 ## Introduction
 
-A simple application of the API available to test and having fun with usefull information abount movies around the world. The API documentation can be check it out at *https://www.themoviedb.org/documentation/api*.
+A simple application using the TMDB API available to test and having fun with usefull and updated information abount movies around the world. The API documentation can be check it out at *https://www.themoviedb.org/documentation/api*.
 
-This application shows how to use some of the most popular libraries under an simple archicture of my perspective grouping what a I considered not so much complexible but very usefull about *Clean Archicture* with *MVP*.
+This application shows how to use some of the most popular libraries under an simple archicture of my perspective grouping what a I considered not so much complex but very usefull about *Clean Archicture* with *MVP*.
 
 First of all, credits to the creators of these beauties libraries below that it were used in this project:
  - com.squareup.okhttp3;
