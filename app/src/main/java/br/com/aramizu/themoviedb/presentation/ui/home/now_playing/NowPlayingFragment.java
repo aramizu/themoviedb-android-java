@@ -75,7 +75,8 @@ public class NowPlayingFragment extends BaseFragment implements NowPlayingMvpVie
         moviesAdapter.setOnLoadMoreInterfaceListener(new OnLoadMoreListenerInterface() {
             @Override
             public void onLoadMore() {
-                presenter.getNowPlayingMovies(AVERAGE_VOTE, moviesAdapter.getCurrentPage());
+                if (isNetworkConnected())
+                    presenter.getNowPlayingMovies(AVERAGE_VOTE, moviesAdapter.getCurrentPage());
             }
         });
 
@@ -93,7 +94,8 @@ public class NowPlayingFragment extends BaseFragment implements NowPlayingMvpVie
             moviesAdapter.addMovies(movies);
         else {
             if (moviesAdapter != null) moviesAdapter.clearMovies();
-            presenter.getNowPlayingMovies(AVERAGE_VOTE, moviesAdapter.getCurrentPage());
+            if (isNetworkConnected())
+                presenter.getNowPlayingMovies(AVERAGE_VOTE, moviesAdapter.getCurrentPage());
         }
     }
 

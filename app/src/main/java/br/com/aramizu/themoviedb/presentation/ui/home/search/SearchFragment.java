@@ -84,7 +84,8 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
         moviesAdapter.setOnLoadMoreInterfaceListener(new OnLoadMoreListenerInterface() {
             @Override
             public void onLoadMore() {
-                presenter.getMoviesByTitle(edtSearch.getText().toString(), moviesAdapter.getCurrentPage());
+                if (isNetworkConnected())
+                    presenter.getMoviesByTitle(edtSearch.getText().toString(), moviesAdapter.getCurrentPage());
             }
         });
 
@@ -113,7 +114,7 @@ public class SearchFragment extends BaseFragment implements SearchMvpView {
 
     @OnClick(R.id.search)
     public void onSearchClick() {
-        if (verifyFields()) {
+        if (verifyFields() && isNetworkConnected()) {
             moviesAdapter.clearMovies();
             presenter.getMoviesByTitle(edtSearch.getText().toString(), moviesAdapter.getCurrentPage());
         }

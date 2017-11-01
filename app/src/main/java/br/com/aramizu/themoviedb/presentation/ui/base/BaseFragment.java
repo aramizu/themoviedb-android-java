@@ -93,6 +93,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         if (activity != null) {
             return activity.isNetworkConnected();
         }
+        onError(getString(R.string.dialog_title_error), getString(R.string.dialog_title_no_network_message));
         return false;
     }
 
