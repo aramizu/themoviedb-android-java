@@ -9,9 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.aramizu.themoviedb.R;
+import br.com.aramizu.themoviedb.data.model.Movie;
 import br.com.aramizu.themoviedb.data.model.MoviesResponseModel;
 import br.com.aramizu.themoviedb.presentation.ui.base.BaseActivity;
 import br.com.aramizu.themoviedb.presentation.ui.base.BaseFragment;
@@ -84,20 +87,27 @@ public class NowPlayingFragment extends BaseFragment implements NowPlayingMvpVie
     @Override
     public void onResume() {
         super.onResume();
-        if (moviesAdapter != null) moviesAdapter.clearMovies();
-        presenter.getNowPlayingMovies(AVERAGE_VOTE, moviesAdapter.getCurrentPage());
+        List<Movie> movies = presenter.getMoviesFromPreference();
+
+        if (movies != null && movies.size() > 0)
+            moviesAdapter.addMovies(movies);
+        else {
+            if (moviesAdapter != null) moviesAdapter.clearMovies();
+            presenter.getNowPlayingMovies(AVERAGE_VOTE, moviesAdapter.getCurrentPage());
+        }
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        presenter.saveMoviesOnPreferences(moviesAdapter.getMovies());
+        super.onPause();
     }
 
     @Override
     public void onDestroyView() {
+        presenter.clearMoviesFromPreferences();
         super.onDestroyView();
     }
-
 
     @Override
     public void showNowPlayingMovies(MoviesResponseModel nowPlayingMovies) {

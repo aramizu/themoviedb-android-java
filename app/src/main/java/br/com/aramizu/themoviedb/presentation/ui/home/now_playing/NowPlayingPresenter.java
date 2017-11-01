@@ -1,6 +1,7 @@
 package br.com.aramizu.themoviedb.presentation.ui.home.now_playing;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -54,6 +55,26 @@ public class NowPlayingPresenter<V extends NowPlayingMvpView> extends BasePresen
         );
     }
 
+    @Override
+    public void clearMoviesFromPreferences() {
+        getDataManager().clearPreferences();
+    }
+
+    @Override
+    public List<Movie> getMoviesFromPreference() {
+        return getDataManager().retrieveMovies();
+    }
+
+    @Override
+    public void saveMoviesOnPreferences(List<Movie> results) {
+        getDataManager().saveMovies(results);
+    }
+
+    /**
+     * Filter movies from response to show only movies with average vote greater than 5.0 (averageVote)
+     * @param averageVote
+     * @param nowPlayingMovies
+     */
     private void filterMoviesByAverageVote(double averageVote, MoviesResponseModel nowPlayingMovies) {
         ArrayList<Movie> filteredMovies = new ArrayList<>(nowPlayingMovies.getResults());
 

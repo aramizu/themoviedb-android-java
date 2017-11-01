@@ -21,6 +21,8 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieDetailsActivity extends BaseActivity {
 
+    public static final String MOVIE_EXTRAS = "MOVIE_EXTRAS";
+
     @BindView(R.id.title_header)
     TextView titleHeader;
     @BindView(R.id.grade)
@@ -50,7 +52,7 @@ public class MovieDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
-        movie = (Movie) getIntent().getExtras().getSerializable("MOVIE");
+        movie = (Movie) getIntent().getExtras().getSerializable(MOVIE_EXTRAS);
 
         setUp();
     }

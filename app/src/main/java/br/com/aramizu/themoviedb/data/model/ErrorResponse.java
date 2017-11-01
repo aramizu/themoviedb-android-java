@@ -1,5 +1,8 @@
 package br.com.aramizu.themoviedb.data.model;
 
+/**
+ * Error Response base on TheMovieDB error json structure
+ */
 public class ErrorResponse {
 
     public String status_message;

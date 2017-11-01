@@ -2,6 +2,9 @@ package br.com.aramizu.themoviedb.data.model;
 
 import java.util.List;
 
+/**
+ * Model MoviesResponseModel
+ */
 public class MoviesResponseModel {
 
     private int page;

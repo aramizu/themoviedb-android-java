@@ -17,7 +17,6 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.aramizu.themoviedb.R;
@@ -82,7 +81,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             public void onClick(View v) {
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 Bundle extra = new Bundle();
-                extra.putSerializable("MOVIE", movies.get(position));
+                extra.putSerializable(MovieDetailsActivity.MOVIE_EXTRAS, movies.get(position));
                 intent.putExtras(extra);
                 context.startActivity(intent);
             }
@@ -133,6 +132,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {

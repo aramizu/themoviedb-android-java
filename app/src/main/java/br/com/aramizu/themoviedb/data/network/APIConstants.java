@@ -1,5 +1,8 @@
 package br.com.aramizu.themoviedb.data.network;
 
+/**
+ * Some constants used by network context
+ */
 public class APIConstants {
 
     /** API KEY */

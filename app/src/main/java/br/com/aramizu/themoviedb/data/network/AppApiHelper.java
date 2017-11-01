@@ -13,6 +13,9 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Implementation of helper for Retrofit Api
+ */
 public class AppApiHelper implements ApiHelper {
 
     private BackendApi backendApi;

@@ -3,6 +3,9 @@ package br.com.aramizu.themoviedb.data.model;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Model Movie
+ */
 public class Movie implements Serializable {
 
     private boolean adult;
