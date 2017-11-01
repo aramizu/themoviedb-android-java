@@ -99,6 +99,7 @@ public class HomeActivity extends BaseActivity implements FragManagerListerner, 
         if (fragNavController.getCurrentStack().size() > 1) {
             fragNavController.popFragment(transactionOptions);
         } else {
+            // Clear the movies list from cache. The list stays on cache only on execution time
             presenter.clearMoviesFromPreferences();
             finish();
         }

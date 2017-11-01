@@ -12,6 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * Custom Dialog to show any kind of information, but with a custom layout.
+ */
 public class GenericDialogOkCancel extends Dialog {
 
     @BindView(R.id.dialog_title)
@@ -65,6 +68,10 @@ public class GenericDialogOkCancel extends Dialog {
         returnResponse(response = true);
     }
 
+    /**
+     * Return if the positive button option has been chosen
+     * @param isPositive
+     */
     public void returnResponse(boolean isPositive) {
         if (mListener != null) {
             mListener.response(isPositive);

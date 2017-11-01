@@ -45,6 +45,11 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         return compositeDisposable;
     }
 
+    /**
+     * Handle the network error to show a returned message or a generic error message
+     * @param view
+     * @param throwable
+     */
     public void handlerThrowableError(V view, Throwable throwable) {
         if (throwable instanceof HttpException) {
             HttpException httpException = (HttpException) throwable;
@@ -60,6 +65,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         }
     }
 
+    /**
+     * Handle the network error to show a returned message
+     * @param error
+     */
     public void handleHttpExceptionWithErrorResponse(final ErrorResponse error) {
         final GenericDialogOkCancel dialog = new GenericDialogOkCancel(
                 getMvpView().getContext(),

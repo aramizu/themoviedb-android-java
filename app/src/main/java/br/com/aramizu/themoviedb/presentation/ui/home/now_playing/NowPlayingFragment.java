@@ -88,6 +88,8 @@ public class NowPlayingFragment extends BaseFragment implements NowPlayingMvpVie
     @Override
     public void onResume() {
         super.onResume();
+
+        // Get the movies list from cache
         List<Movie> movies = presenter.getMoviesFromPreference();
 
         if (movies != null && movies.size() > 0)

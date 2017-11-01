@@ -50,6 +50,10 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         super.onDestroy();
     }
 
+    /**
+     * Show or hide menu overflow from toolbar starting from fragment
+     * @param menu
+     */
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.search);
@@ -60,6 +64,9 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         super.onPrepareOptionsMenu(menu);
     }
 
+    /**
+     * Show loading on full screen to wait services
+     */
     @Override
     public void showLoading() {
         if (activity != null) {
@@ -67,6 +74,9 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
+    /**
+     * Hide loading on full screen to wait services
+     */
     @Override
     public void hideLoading() {
         if (activity != null) {
@@ -74,6 +84,11 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
+    /**
+     * Show error dialog.
+     * @param resId
+     * @param type
+     */
     @Override
     public void onError(@StringRes int resId, int type) {
         if (activity != null) {
@@ -81,6 +96,11 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
+    /**
+     * Show error dialog.
+     * @param title
+     * @param message
+     */
     @Override
     public void onError(String title, String message) {
         if (activity != null) {
@@ -88,6 +108,10 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
+    /**
+     * Check if device has any kind of network
+     * @return
+     */
     @Override
     public boolean isNetworkConnected() {
         if (activity != null) {
@@ -97,6 +121,9 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         return false;
     }
 
+    /**
+     * Hide de SIP Keyboard
+     */
     @Override
     public void hideKeyboard() {
         if (activity != null) {
@@ -104,12 +131,18 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
+    /**
+     * Detach the current fragment from his parent activity
+     */
     @Override
     public void onDetach() {
         activity = null;
         super.onDetach();
     }
 
+    /**
+     * Abstract method to setup after creation of a Activity or Fragment
+     */
     protected abstract void setUp();
 
     public ActivityComponent getActivityComponent() {
@@ -130,6 +163,10 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         getBaseActivity().setToolbarTitle(message);
     }
 
+    /**
+     * Change any component from toolbar (home button, color etc)
+     * @param toolbarStyle
+     */
     @Override
     public void setToolbarStyle(int toolbarStyle) {
         getBaseActivity().setToolbarStyle(toolbarStyle);

@@ -9,8 +9,6 @@ import br.com.aramizu.themoviedb.R;
 
 public final class CommonUtils {
 
-    private static final String TAG = "CommonUtils";
-
     private CommonUtils() {
     }
 

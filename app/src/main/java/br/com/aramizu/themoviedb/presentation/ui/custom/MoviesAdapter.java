@@ -90,6 +90,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         movieViewHolder.title.setText(movie.getTitle());
         movieViewHolder.grade.setText(String.valueOf(String.format("%.1f", movie.getVote_average())));
 
+        // Load more (pagination)
         if (currentPage < totalPages && position == movies.size() - 1) {
             currentPage++;
             onLoadMoreListenerInterface.onLoadMore();

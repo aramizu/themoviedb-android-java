@@ -56,6 +56,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
                 .build();
     }
 
+    /**
+     * Setup ActitonBar with the custom toolbar
+     */
     private void setUpToolbar() {
         setSupportActionBar(toolbar);
 
@@ -84,12 +87,18 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         finish();
     }
 
+    /**
+     * Show loading on full screen to wait services
+     */
     @Override
     public void showLoading() {
         hideLoading();
         progressDialog = CommonUtils.showLoadingDialog(this);
     }
 
+    /**
+     * Hide loading on full screen to wait services
+     */
     @Override
     public void hideLoading() {
         if (progressDialog != null && progressDialog.isShowing()) {
@@ -97,16 +106,31 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         }
     }
 
+    /**
+     * Show error dialog.
+     * @param resTitleId
+     * @param resMessageId
+     */
     @Override
     public void onError(@StringRes int resTitleId, @StringRes int resMessageId) {
         showDialog(getString(resTitleId), getString(resMessageId));
     }
 
+    /**
+     * Show error dialog.
+     * @param title
+     * @param message
+     */
     @Override
     public void onError(String title, String message) {
         showDialog(title, message);
     }
 
+    /**
+     * Show informative dialog.
+     * @param title
+     * @param message
+     */
     private void showDialog(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
@@ -123,11 +147,18 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         dialog.show();
     }
 
+    /**
+     * Check if device has any kind of network
+     * @return
+     */
     @Override
     public boolean isNetworkConnected() {
         return NetworkUtils.isNetworkConnected(getApplicationContext());
     }
 
+    /**
+     * Hide de SIP Keyboard
+     */
     public void hideKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -136,6 +167,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         }
     }
 
+    /**
+     * Abstract method to setup after creation of a Activity or Fragment
+     */
     protected abstract void setUp();
 
     @Override
@@ -148,6 +182,10 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         toolbarTitle.setText(message);
     }
 
+    /**
+     * Change any component from toolbar (home button, color etc)
+     * @param toolbarStyle
+     */
     @Override
     public void setToolbarStyle(int toolbarStyle) {
         switch (toolbarStyle) {
